@@ -2,13 +2,14 @@
 #!/MobCat (2022)
 
 import discord      # Discord bot api
-import os		    # Basic os funcions like task kill and load files..
+import os           # Basic os funcions like task kill and load files..
 import sys, getopt  # for command line varibal things
-#import datetime     # Get date and time from system
+#import datetime    # Get date and time from system, placeholder for future expansions.
 
 # User variables
 # Where is your Discord bot API token file stored.
 BotKey = "F:\\Python\\Discord\\Navi\\Discord.key"
+# Linux files paths like "F:/Python/" or "env/user/" should work too but not really tested.
 # What is the default bot channel when not useing the -c command
 BotChannel = "bots"
 
@@ -29,7 +30,7 @@ if BotToken == '':
 # Bot invite link
 #https://discord.com/api/oauth2/authorize?client_id=YOURIDHERE&permissions=2147798080&scope=bot
 
-
+#########################################################################################################################
 #Def for procuessing command input
 def CMDArgs(argv):
 	global commandMsg, BotChannel, BotServer
