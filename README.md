@@ -45,7 +45,9 @@ Simple enough.<br>
 If you wanna get more complex with it you can run `python Navi.py -s 1 -c NSFW -m "I should not be here."`<br>
 This will send the message to the NSFW channel on your 2nd server. You can mix and match these commands to your liking.<br>
 You can now also send a fancy message like this `python Navi.py -s 1 -c NSFW -m "I should\nnot\nbe\nhere."`<br>
-This will make a multi-line message where each word is on a new line, `\n` is your special char for this.<br?
+This will make a multi-line message where each word is on a new line but, all these lines will be sent as one<br>
+singular message. Same as if you hit Shift+enter in the discord client when typing a message. <br>
+`\n` is our special character for telling the bot to make a new line.<br?
 If all your servers have a `Bots` channel then you don't need to specify the `-c` command you can just set `BotChannel = "Bots"` as your default channel in `Navi.py`<br>
 If you only have one server but want to talk on different channels then you can supply the `-c` command without needing to set a server with the `-s` command.<br>
 That covers most of it, you can see a full list of commands by running `python Navi.py -h` though.<br>
