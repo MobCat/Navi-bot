@@ -2,18 +2,21 @@
 #!/MobCat (2022)
 
 import discord      # Discord bot api
-import os           # Basic os funcions like task kill and load files..
+import os		    # Basic os funcions like task kill and load files..
 import sys, getopt  # for command line varibal things
-#import datetime    # Get date and time from system, placeholder for future expansions.
+#import datetime     # Get date and time from system
 
 # User variables
 # Where is your Discord bot API token file stored.
-BotKey = "F:\\Python\\Discord\\Navi\\Discord.key"
-# Linux files paths like "F:/Python/" or "env/user/" should work too but not really tested.
+BotKey = "Discord.key"
+# Absolute file path for if your running the bot from somewhere else.
+#BotKey = "F:\\Python\\Discord\\Navi\\Discord.key"
 # What is the default bot channel when not useing the -c command
 BotChannel = "bots"
 
-#!DO NOT UPLOAD YOUR Discord.key FILE!#
+#!DO NOT UPLOAD YOUR Discord.key FILE!##############
+#!DO NOT UPLOAD YOUR Discord.key FILE!#########################################
+#!DO NOT UPLOAD YOUR Discord.key FILE!##############
 try:
 	with open(BotKey, 'r') as f:
 		# It's assumed our file contains a single line,
@@ -26,6 +29,10 @@ except FileNotFoundError:
 if BotToken == '':
 	print ('You need to add your bot API Token into the Discord.key file\nhttps://discord.com/developers/applications')
 	os._exit(1)
+
+#!DO NOT UPLOAD YOUR Discord.key FILE!##############
+#!DO NOT UPLOAD YOUR Discord.key FILE!#####################################
+#!DO NOT UPLOAD YOUR Discord.key FILE!##############
 
 # Bot invite link
 #https://discord.com/api/oauth2/authorize?client_id=YOURIDHERE&permissions=2147798080&scope=bot
@@ -45,16 +52,24 @@ def CMDArgs(argv):
 	for opt, arg in opts:
 			if opt == '-h':
 				print ('''Discord python message bot
-20220613 - MobCat
+20230331 - MobCat
 
 Navi.py -h
 Will display this help screen
 
 Navi.py -m "Your messages" 
 Will send "Your messages" to the default server and channel.
-Defult channel is set to "bots" by default.
+Default channel is set to "bots" by default.
 It can be changed in the code if you like, look for User variables
 at the top.
+
+Navi.py -m "Your message\\nis really\\nreally\\nlong"
+Placing a "\\n" In your message will send a multi line message
+In this case to the default server and channel.
+Your message
+is really
+really
+long
 
 Navi.py -c general -m "Your messages"
 Will send "Your messages" to the "general" channel on the default server.
@@ -97,10 +112,23 @@ if BotServer == "":
 	print("Default server ID was set.")
 	BotServer = 0
 
+
+# New and tasty
+# This will find a \n if it was included in our -m messages
+# Then split each message block up and chuck it in a list. 
+# Then it will send that list with it's own newline chars
+# It sounds stupid but if you don't do this, the \n will be
+# treated as plain text by the discord api.
+# as we are passing it inside a string, not outside.
+bufferMsg = []
+bufferMsg = commandMsg.split("\\n")
+commandMsg = '\n'.join(bufferMsg)
+
+
 # Our push message to discord thing
 async def sendMessage(channel, commandMsg):
 	try:
-		await channel.send(f"{commandMsg}")
+		await channel.send(commandMsg)
 	except AttributeError:
 		print("ERROR: Please check the spelling of your -c channel. It is case sensitive")
 
@@ -136,6 +164,7 @@ async def main(commandMsg):
 async def on_ready():
 	print('Logged in as {0.user}'.format(bot))
 
+
 	# Check if there was no input, then print a list of server ids we are appart of
 	if commandMsg == "":
 		print("[Settings]")
@@ -146,7 +175,7 @@ async def on_ready():
 		for i in bot.guilds:
 			print(f"ID={ID} Server={i}")
 			ID +=1
-		print("\nPlease copy paste the server ID you want to send messages to.")
+		print("\nPlease copy paste the server ID you want to send messages to.\nRun Navi.py -h for more info.")
 		os._exit(1)
 	
 	await main(commandMsg)
