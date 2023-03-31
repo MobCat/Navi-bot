@@ -58,6 +58,6 @@ I wish you could just @ ping like normal but discords api is weird, getting the 
 ### "Bug"
 "bugs" and not actual bugs as there is nothing I know about that prevent the script from running, just some weird things I don't know what I want to do about yet.<br>
 The key thing is anything you send with the `-m ` command is stripped and converted as a single string.<br>
-This means that things like `\n` newlines isn't working right now but also, some emojies and special characters don't work either.<br>
-Right now this means its almost impossible for a user to submit a `-m ` command that brakes the bot or discord but it also means you cant do some other cool things.<br>
+This means some emojies and special characters don't work.<br>
+Right now this means it's almost impossible for a user to submit a `-m ` command that brakes the bot or discord but it also means you cant do some other cool things.<br>
 Emojies kinda work.. The built in default discord ones like `:eyes:` and `:grinning:` work fine. but I could never get custom emojies like `<:CustomEmojie:123456789>` to work.
